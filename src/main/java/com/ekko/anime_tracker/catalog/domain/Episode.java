@@ -15,11 +15,16 @@ import lombok.ToString;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Episode {
+    @EqualsAndHashCode.Include
+    private Long id;
 
     @EqualsAndHashCode.Include
     private Long seasonId;
-    private Integer episodeNumber;
+
+    @EqualsAndHashCode.Include
     private String title; //doit être unique
+
+    private Integer episodeNumber;
     private Integer duration; // minutes
     private LocalDate airDate;
 }

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface AnimeRepository {
 
-    Anime save(Anime anime);
+    void save(Anime anime);
 
     Optional<Anime> findById(Long id);
 
@@ -13,5 +13,7 @@ public interface AnimeRepository {
 
     List<Anime> findAll();
 
-    void delete(Long id);
+    void deleteById(Long id);
+
+    void delete(Anime anime);
 }

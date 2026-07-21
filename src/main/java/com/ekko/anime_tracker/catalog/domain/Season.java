@@ -21,10 +21,18 @@ public class Season {
 
     @EqualsAndHashCode.Include
     private Long id;
+
+    @EqualsAndHashCode.Include
     private Long animeId;
+
+    @EqualsAndHashCode.Include
     private Integer seasonNumber;
+
     // private SeasonStatus status; airing
+    @EqualsAndHashCode.Include
     private String title; // doit être unique
+
+    private String description;
     private LocalDate releaseDate;
     private List<Episode> episodes;
 }

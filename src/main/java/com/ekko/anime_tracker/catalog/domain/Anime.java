@@ -4,12 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.ekko.anime_tracker.catalog.domain.enums.AnimeStatus;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
@@ -17,11 +12,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
+@Builder
 public class Anime {
 
     @EqualsAndHashCode.Include
     private Long id;
+
+    @EqualsAndHashCode.Include
     private String title;// doit etre unique
+
     private String synopsis;
     private LocalDate releaseYear;
     // private AnimeStatus status;  airing
