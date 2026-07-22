@@ -1,8 +1,8 @@
-package com.ekko.anime_tracker.catalog.adapter.persistence.web;
+package com.ekko.anime_tracker.catalog.adapter.web;
 
-import com.ekko.anime_tracker.catalog.adapter.persistence.web.response.AnimeResponse;
-import com.ekko.anime_tracker.catalog.adapter.persistence.web.response.AnimeSummaryResponse;
-import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogQueryService;
+import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeResponse;
+import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
+import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogQueryServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.List;
 @RequestMapping("/api/catalog")
 public class CatalogQueryController {
 
-    private final AnimeCatalogQueryService service;
+    private final AnimeCatalogQueryServiceImpl service;
 
-    public CatalogQueryController(AnimeCatalogQueryService service) {
+    public CatalogQueryController(AnimeCatalogQueryServiceImpl service) {
         this.service = service;
     }
 

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface AnimeRepository {
 
-    void save(Anime anime);
+    Anime save(Anime anime);
 
     Optional<Anime> findById(Long id);
 

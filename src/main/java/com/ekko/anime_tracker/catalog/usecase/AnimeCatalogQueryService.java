@@ -1,28 +1,24 @@
 package com.ekko.anime_tracker.catalog.usecase;
 
-import com.ekko.anime_tracker.catalog.domain.Anime;
-import com.ekko.anime_tracker.catalog.domain.AnimeNotFoundException;
-import com.ekko.anime_tracker.catalog.domain.AnimeRepository;
+import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeResponse;
+import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
 
-public class AnimeCatalogQueryService {
-    private final AnimeRepository animeRepository;
+import java.util.List;
 
-    public AnimeCatalogQueryService(AnimeRepository animeRepository) {
-        this.animeRepository = animeRepository;
-    }
+public interface AnimeCatalogQueryService {
 
-    public Anime getAnimeById(Long id) {//n'a rien à faire ici doit etre dans QueryService
-        return animeRepository.findById(id)
-                .orElseThrow(() -> new AnimeNotFoundException(id));
-    }
-/*
-    public List<Anime> search(String title) {}
+    List<AnimeSummaryResponse> search(
+            String title,
+            String genre,
+            String studio);
 
-    public Anime getAnimeDetails(...) {}
+    AnimeResponse getAnimeDetails(Long animeId);
 
-    public List<Anime> browseByGenre(...) {}
+    List<AnimeSummaryResponse> browseByGenre(String genre);
 
-    public List<Anime> browseByStudio(...) {}
+    List<AnimeSummaryResponse> browseByStudio(String studio);
 
-    public List<Anime> browseSeasonal(...) {}*/
+    List<AnimeSummaryResponse> browseSeasonalAnime(
+            Integer year,
+            String season);
 }

@@ -1,4 +1,4 @@
-package com.ekko.anime_tracker.catalog.adapter.persistence.web.response;
+package com.ekko.anime_tracker.catalog.adapter.web.response;
 
 public record AnimeSummaryResponse(
 

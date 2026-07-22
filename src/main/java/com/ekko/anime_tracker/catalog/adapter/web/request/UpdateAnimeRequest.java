@@ -1,6 +1,6 @@
-package com.ekko.anime_tracker.catalog.adapter.persistence.web.request;
+package com.ekko.anime_tracker.catalog.adapter.web.request;
 
-public record CreateAnimeRequest(
+public record UpdateAnimeRequest(
 
         String title,
 

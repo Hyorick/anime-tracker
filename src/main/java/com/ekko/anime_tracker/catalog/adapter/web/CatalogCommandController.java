@@ -1,19 +1,25 @@
-package com.ekko.anime_tracker.catalog.adapter.persistence.web;
+package com.ekko.anime_tracker.catalog.adapter.web;
 
 
-import com.ekko.anime_tracker.catalog.adapter.persistence.web.request.*;
-import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogService;
+import com.ekko.anime_tracker.catalog.adapter.web.mapper.response.AnimeResponseMapper;
+import com.ekko.anime_tracker.catalog.adapter.web.request.*;
+import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeResponse;
+import com.ekko.anime_tracker.catalog.domain.Anime;
+import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogCommandService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/catalog")
 public class CatalogCommandController {
 
-    private final AnimeCatalogService service;
+    private final AnimeCatalogCommandService service;
+    private final AnimeResponseMapper animeResponseMapper;
 
-    public CatalogCommandController(AnimeCatalogService service) {
+    public CatalogCommandController(AnimeCatalogCommandService service, AnimeResponseMapper animeResponseMapper) {
         this.service = service;
+        this.animeResponseMapper = animeResponseMapper;
     }
 
     // ==========================
@@ -22,8 +28,11 @@ public class CatalogCommandController {
 
     @PostMapping("/anime")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createAnime(@RequestBody CreateAnimeRequest request) {
-        //service.createAnime(request);
+    public ResponseEntity<AnimeResponse> createAnime(@RequestBody CreateAnimeRequest request) {
+        Anime anime = service.createAnime(request);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body( animeResponseMapper.toResponse(anime) );
     }
 
     @PutMapping("/anime/{animeId}")

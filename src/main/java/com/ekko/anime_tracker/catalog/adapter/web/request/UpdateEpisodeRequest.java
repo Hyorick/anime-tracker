@@ -1,4 +1,4 @@
-package com.ekko.anime_tracker.catalog.adapter.persistence.web.request;
+package com.ekko.anime_tracker.catalog.adapter.web.request;
 
 import java.time.LocalDate;
 
