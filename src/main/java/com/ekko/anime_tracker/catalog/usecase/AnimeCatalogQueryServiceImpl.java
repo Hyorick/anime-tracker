@@ -5,9 +5,11 @@ import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.domain.AnimeNotFoundException;
 import com.ekko.anime_tracker.catalog.domain.AnimeRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AnimeCatalogQueryServiceImpl implements AnimeCatalogQueryService {
     private final AnimeRepository animeRepository;
 

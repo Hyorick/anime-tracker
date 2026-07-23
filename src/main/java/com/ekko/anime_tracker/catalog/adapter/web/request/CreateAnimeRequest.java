@@ -15,7 +15,7 @@ public record CreateAnimeRequest(
         String synopsis,
 
         @NotNull
-        LocalDate releaseDate,
+        LocalDate releaseDate/* mettre releaseYear*/,
 
         @NotBlank
         String studio,

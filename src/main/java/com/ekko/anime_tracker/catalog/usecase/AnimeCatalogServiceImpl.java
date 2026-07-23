@@ -4,7 +4,9 @@ import com.ekko.anime_tracker.catalog.adapter.web.mapper.request.AnimeRequestMap
 import com.ekko.anime_tracker.catalog.adapter.web.request.*;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.domain.AnimeRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AnimeCatalogServiceImpl implements AnimeCatalogCommandService {
 
     private final AnimeRepository animeRepository;
@@ -23,7 +25,6 @@ public class AnimeCatalogServiceImpl implements AnimeCatalogCommandService {
     public Anime createAnime(CreateAnimeRequest request) {
 
         return animeRepository.save(animeRequestMapper.toDomain(request));
-        //return null;
     }
 
     @Override

@@ -1,9 +1,13 @@
 package com.ekko.anime_tracker.catalog.adapter.persistence.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "episodes")
 public class EpisodeEntity {

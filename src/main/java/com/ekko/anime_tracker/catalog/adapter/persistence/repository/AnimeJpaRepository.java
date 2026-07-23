@@ -1,6 +1,8 @@
 package com.ekko.anime_tracker.catalog.adapter.persistence.repository;
 
 import com.ekko.anime_tracker.catalog.adapter.persistence.entity.AnimeEntity;
+import com.ekko.anime_tracker.catalog.adapter.persistence.entity.GenreEntity;
+import com.ekko.anime_tracker.catalog.adapter.persistence.entity.StudioEntity;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.domain.AnimeRepository;
 import com.ekko.anime_tracker.catalog.adapter.persistence.mapper.AnimeEntityMapper;
@@ -12,35 +14,65 @@ import java.util.Optional;
 @Repository
 public class AnimeJpaRepository implements AnimeRepository {
 
-    private final SpringDataAnimeRepository repository;
+    private final SpringDataAnimeRepository animeRepository;
+    private final SpringDataGenreRepository genreRepository;
+    private final SpringDataStudioRepository studioRepository;
     private final AnimeEntityMapper animeEntityMapper;
 
-    public AnimeJpaRepository(SpringDataAnimeRepository repository, AnimeEntityMapper animeEntityMapper) {
-        this.repository = repository;
+    public AnimeJpaRepository(SpringDataAnimeRepository animeRepository, SpringDataGenreRepository genreRepository, SpringDataStudioRepository studioRepository, AnimeEntityMapper animeEntityMapper) {
+        this.animeRepository = animeRepository;
+        this.genreRepository = genreRepository;
+        this.studioRepository = studioRepository;
         this.animeEntityMapper = animeEntityMapper;
     }
 
     @Override
     public Anime save(Anime anime) {
-        AnimeEntity animeEntity = repository.save(animeEntityMapper.toEntity(anime));
-        return animeEntityMapper.toDomain(animeEntity);
-        //return null;
+
+        AnimeEntity dbEntitySent = animeEntityMapper.toEntity(anime);
+
+        StudioEntity studio = studioRepository
+                .findByName(anime.getStudio().getName())
+                .orElseGet(() -> {
+                    StudioEntity s = new StudioEntity();
+                    s.setName(anime.getStudio().getName());
+                    return studioRepository.save(s);
+                });
+
+        dbEntitySent.setStudio(studio);
+
+        List<GenreEntity> genres = anime.getGenres()
+                .stream()
+                .map(genre ->
+                        genreRepository.findByName(genre.getName())
+                                .orElseGet(() -> {
+                                    GenreEntity g = new GenreEntity();
+                                    g.setName(genre.getName());
+                                    return genreRepository.save(g);
+                                }))
+                .toList();
+
+        dbEntitySent.setGenres(genres);
+
+        AnimeEntity savedAnimeEntity = animeRepository.save(dbEntitySent);
+
+        return animeEntityMapper.toDomain(savedAnimeEntity);
     }
 
     @Override
     public Optional<Anime> findById(Long id) {
-        return repository.findById(id).map(animeEntityMapper::toDomain);
+        return animeRepository.findById(id).map(animeEntityMapper::toDomain);
     }
 
     @Override
     public Optional<Anime> findByTitle(String title) {
 
-        return repository.findByTitle(title).map(animeEntityMapper::toDomain);
+        return animeRepository.findByTitle(title).map(animeEntityMapper::toDomain);
     }
 
     @Override
     public List<Anime> findAll() {
-        return repository.findAll()
+        return animeRepository.findAll()
                 .stream()
                 .map(animeEntityMapper::toDomain)
                 .toList();
@@ -48,11 +80,11 @@ public class AnimeJpaRepository implements AnimeRepository {
 
     @Override
     public void deleteById(Long id) {
-        repository.deleteById(id);
+        animeRepository.deleteById(id);
     }
 
     @Override
     public void delete(Anime anime) {
-        repository.delete(animeEntityMapper.toEntity(anime));
+            animeRepository.delete(animeEntityMapper.toEntity(anime));
     }
 }

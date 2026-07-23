@@ -1,10 +1,14 @@
 package com.ekko.anime_tracker.catalog.adapter.persistence.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "animes")
 public class AnimeEntity {
@@ -44,4 +48,17 @@ public class AnimeEntity {
     }
 
     // Getters & Setters
+    public void addSeason(SeasonEntity season) {
+
+        seasons.add(season);
+
+        season.setAnime(this);
+    }
+
+    public void removeSeason(SeasonEntity season) {
+
+        seasons.remove(season);
+
+        season.setAnime(null);
+    }
 }

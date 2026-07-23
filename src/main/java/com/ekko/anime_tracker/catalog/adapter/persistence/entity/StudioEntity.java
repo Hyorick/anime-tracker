@@ -1,7 +1,11 @@
 package com.ekko.anime_tracker.catalog.adapter.persistence.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "studios")
 public class StudioEntity {

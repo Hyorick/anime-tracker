@@ -22,7 +22,8 @@ public class Anime {
     private String title;// doit etre unique
 
     private String synopsis;
-    private LocalDate releaseYear;
+    //private LocalDate releaseYear;
+    private Integer releaseYear;
     // private AnimeStatus status;  airing
     private Studio studio;
     private List<Genre> genres;
