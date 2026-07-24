@@ -26,7 +26,7 @@ public class CatalogCommandController {
     // Anime
     // ==========================
 
-    @PostMapping("/anime")
+    @PostMapping("/animes")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<AnimeResponse> createAnime(@RequestBody CreateAnimeRequest request) {
         Anime anime = service.createAnime(request);
@@ -35,7 +35,15 @@ public class CatalogCommandController {
                 .body( animeResponseMapper.toResponse(anime) );
     }
 
-    @PutMapping("/anime/{animeId}")
+    /*@PatchMapping("/animes/{animeId}")
+    public void updateAnime(
+            @PathVariable Long animeId,
+            @RequestBody UpdateAnimeRequest request) {
+
+        //service.updateAnime(animeId, request);
+    }*/
+
+    @PutMapping("/animes/{animeId}")
     public void updateAnime(
             @PathVariable Long animeId,
             @RequestBody UpdateAnimeRequest request) {
@@ -43,7 +51,7 @@ public class CatalogCommandController {
         //service.updateAnime(animeId, request);
     }
 
-    @DeleteMapping("/anime/{animeId}")
+    @DeleteMapping("/animes/{animeId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAnime(@PathVariable Long animeId) {
         //service.deleteAnime(animeId);
@@ -53,7 +61,7 @@ public class CatalogCommandController {
     // Seasons
     // ==========================
 
-    @PostMapping("/anime/{animeId}/seasons")
+    @PostMapping("/animes/{animeId}/seasons")
     @ResponseStatus(HttpStatus.CREATED)
     public void addSeason(
             @PathVariable Long animeId,
@@ -62,7 +70,7 @@ public class CatalogCommandController {
         //service.addSeason(animeId, request);
     }
 
-    @PutMapping("/anime/{animeId}/seasons/{seasonId}")
+    @PutMapping("/animes/{animeId}/seasons/{seasonId}")
     public void updateSeason(
             @PathVariable Long animeId,
             @PathVariable Long seasonId,
@@ -71,7 +79,7 @@ public class CatalogCommandController {
         //service.updateSeason(animeId, seasonId, request);
     }
 
-    @DeleteMapping("/anime/{animeId}/seasons/{seasonId}")
+    @DeleteMapping("/animes/{animeId}/seasons/{seasonId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteSeason(
             @PathVariable Long animeId,
@@ -84,7 +92,7 @@ public class CatalogCommandController {
     // Episodes
     // ==========================
 
-    @PostMapping("/anime/{animeId}/seasons/{seasonId}/episodes")
+    @PostMapping("/animes/{animeId}/seasons/{seasonId}/episodes")
     @ResponseStatus(HttpStatus.CREATED)
     public void addEpisode(
             @PathVariable Long animeId,
@@ -94,7 +102,7 @@ public class CatalogCommandController {
         //service.addEpisode(animeId, seasonId, request);
     }
 
-    @PutMapping("/anime/{animeId}/seasons/{seasonId}/episodes/{episodeId}")
+    @PutMapping("/animes/{animeId}/seasons/{seasonId}/episodes/{episodeId}")
     public void updateEpisode(
             @PathVariable Long animeId,
             @PathVariable Long seasonId,
@@ -104,7 +112,7 @@ public class CatalogCommandController {
         //service.updateEpisode(animeId, seasonId, episodeId, request);
     }
 
-    @DeleteMapping("/anime/{animeId}/seasons/{seasonId}/episodes/{episodeId}")
+    @DeleteMapping("/animes/{animeId}/seasons/{seasonId}/episodes/{episodeId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteEpisode(
             @PathVariable Long animeId,

@@ -71,6 +71,23 @@ public class AnimeJpaRepository implements AnimeRepository {
     }
 
     @Override
+    public List<Anime> findByGenreName(String genreName) {
+
+        return animeRepository.findByGenres_NameIgnoreCase(genreName)
+                .stream()
+                .map(animeEntityMapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public List<Anime> findByStudioName(String studioName) {
+        return animeRepository.findByStudio_NameIgnoreCase(studioName)
+                .stream()
+                .map(animeEntityMapper::toDomain)
+                .toList();
+    }
+
+    @Override
     public List<Anime> findAll() {
         return animeRepository.findAll()
                 .stream()

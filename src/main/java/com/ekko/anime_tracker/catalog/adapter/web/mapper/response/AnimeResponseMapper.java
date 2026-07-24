@@ -6,6 +6,7 @@ import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.domain.Genre;
 import com.ekko.anime_tracker.catalog.domain.Studio;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(
         componentModel = "spring",
@@ -15,11 +16,11 @@ import org.mapstruct.Mapper;
 )
 public interface AnimeResponseMapper
         extends ResponseMapper<Anime, AnimeResponse> {
+
+        @Mapping(target = "studio", source = "studio.name")
+        AnimeResponse toResponse(Anime anime);
+
         default String map(Genre genre) {
                 return genre.getName();
-        }
-
-        default String map(Studio studio) {
-                return studio.getName();
         }
 }

@@ -11,6 +11,10 @@ public interface AnimeRepository {
 
     Optional<Anime> findByTitle(String title);
 
+    List<Anime> findByGenreName(String genreName);
+
+    List<Anime> findByStudioName(String studioName);
+
     List<Anime> findAll();
 
     void deleteById(Long id);

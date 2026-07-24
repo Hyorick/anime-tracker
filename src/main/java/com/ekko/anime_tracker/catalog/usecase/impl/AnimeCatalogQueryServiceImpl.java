@@ -1,13 +1,13 @@
-package com.ekko.anime_tracker.catalog.usecase;
+package com.ekko.anime_tracker.catalog.usecase.impl;
 
-import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeResponse;
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
-import com.ekko.anime_tracker.catalog.domain.AnimeNotFoundException;
 import com.ekko.anime_tracker.catalog.domain.AnimeRepository;
+import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogQueryService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnimeCatalogQueryServiceImpl implements AnimeCatalogQueryService {
@@ -17,29 +17,26 @@ public class AnimeCatalogQueryServiceImpl implements AnimeCatalogQueryService {
         this.animeRepository = animeRepository;
     }
 
-    public Anime getAnimeById(Long id) {//n'a rien à faire ici doit etre dans QueryService
-        return animeRepository.findById(id)
-                .orElseThrow(() -> new AnimeNotFoundException(id));
-    }
-
     @Override
     public List<AnimeSummaryResponse> search(String title, String genre, String studio) {
         return List.of();
     }
 
     @Override
-    public AnimeResponse getAnimeDetails(Long animeId) {
-        return null;
+    public Optional<Anime> getAnimeDetails(Long animeId) {
+        return animeRepository.findById(animeId);
     }
 
     @Override
-    public List<AnimeSummaryResponse> browseByGenre(String genre) {
-        return List.of();
+    public List<Anime> searchByGenreName(String genre) {
+
+        return animeRepository.findByGenreName(genre);
     }
 
     @Override
-    public List<AnimeSummaryResponse> browseByStudio(String studio) {
-        return List.of();
+    public List<Anime> searchByStudioName(String studio) {
+
+        return animeRepository.findByStudioName(studio);
     }
 
     @Override
@@ -48,12 +45,6 @@ public class AnimeCatalogQueryServiceImpl implements AnimeCatalogQueryService {
     }
 /*
     public List<Anime> search(String title) {}
-
-    public Anime getAnimeDetails(...) {}
-
-    public List<Anime> browseByGenre(...) {}
-
-    public List<Anime> browseByStudio(...) {}
 
     public List<Anime> browseSeasonal(...) {}*/
 }

@@ -1,5 +1,7 @@
 package com.ekko.anime_tracker.catalog.adapter.web.response;
 
+import java.util.List;
+
 public record AnimeSummaryResponse(
 
         Long id,
@@ -8,7 +10,13 @@ public record AnimeSummaryResponse(
 
         Integer releaseYear,
 
-        String studio
+        String studio,
+
+        List<String> genres,
+
+        int seasonCount,
+
+        int episodeCount
 
 ) {
 }
