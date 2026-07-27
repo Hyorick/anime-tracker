@@ -1,9 +1,14 @@
 package com.ekko.anime_tracker.catalog.usecase.impl;
 
+import com.ekko.anime_tracker.catalog.adapter.persistence.entity.AnimeEntity;
+import com.ekko.anime_tracker.catalog.adapter.persistence.mapper.AnimeEntityMapper;
+import com.ekko.anime_tracker.catalog.adapter.persistence.repository.AnimeSpecification;
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.domain.AnimeRepository;
 import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogQueryService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +23,12 @@ public class AnimeCatalogQueryServiceImpl implements AnimeCatalogQueryService {
     }
 
     @Override
-    public List<AnimeSummaryResponse> search(String title, String genre, String studio) {
-        return List.of();
+    public Page<Anime> search(String title, String genre, String studio, Pageable pageable) {
+
+        return animeRepository.findAll(
+                AnimeSpecification.filter(title, genre, studio),
+                pageable
+        );
     }
 
     @Override
@@ -43,8 +52,16 @@ public class AnimeCatalogQueryServiceImpl implements AnimeCatalogQueryService {
     public List<AnimeSummaryResponse> browseSeasonalAnime(Integer year, String season) {
         return List.of();
     }
-/*
-    public List<Anime> search(String title) {}
 
-    public List<Anime> browseSeasonal(...) {}*/
+    @Override
+    public List<Anime> getAllAnimes() {
+        return animeRepository.findAll();
+    }
+
+    @Override
+    public Page<Anime> getAllAnimes(Pageable pageable) {
+        return animeRepository.findAll(pageable);
+    }
+
+//  public List<Anime> browseSeasonal(...) {}
 }

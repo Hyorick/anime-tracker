@@ -29,14 +29,15 @@ public class CatalogQueryController {
         this.summaryMapper = summaryMapper;
     }
 
-    @GetMapping("/animes")
-    public List<AnimeSummaryResponse> searchAnime(
+    @GetMapping("/animes/search")
+    public Page<AnimeResponse> searchAnime(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String genre,
-            @RequestParam(required = false) String studio) {
+            @RequestParam(required = false) String studio, Pageable pageable) {
 
-        //return service.search(title, genre, studio);
-        return List.of();
+        Page<Anime> animes = service.search(title, genre, studio, pageable);
+        return animes
+                .map(animeResponseMapper::toResponse);
     }
 
     @GetMapping("/animes/{animeId}")
@@ -45,18 +46,24 @@ public class CatalogQueryController {
 
         Optional<Anime> foundAnime = service.getAnimeDetails(animeId);
         return foundAnime
-                .map(anime -> {
-                    return new ResponseEntity(animeResponseMapper.toResponse(anime), HttpStatus.OK) ;
-                })
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(anime -> ResponseEntity.ok(animeResponseMapper.toResponse(anime)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping(path = "/animes")
+    public List<AnimeResponse> listsAnime() {
+        List<Anime> animes = service.getAllAnimes();
+        return animes
+                .stream()
+                .map(animeResponseMapper::toResponse)
+                .toList();
     }
 
     @GetMapping(path = "/animes/page")
     public Page<AnimeResponse> listsAnime(Pageable pageable) {
-        /*Page<BookEntity> books = service.findAll(pageable);
-        return books.map(mapper::mapTo);*/
-        //Page<Anime> animes = service.
-        return null;
+        Page<Anime> animes = service.getAllAnimes(pageable);
+        return animes
+                .map(animeResponseMapper::toResponse);
     }
 
     @GetMapping("/animes/genre/{genre}")

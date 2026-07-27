@@ -2,16 +2,18 @@ package com.ekko.anime_tracker.catalog.usecase;
 
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface AnimeCatalogQueryService {
 
-    List<AnimeSummaryResponse> search(
+    Page<Anime> search(
             String title,
             String genre,
-            String studio);
+            String studio, Pageable pageable);
 
     Optional<Anime> getAnimeDetails(Long animeId);
 
@@ -22,4 +24,8 @@ public interface AnimeCatalogQueryService {
     List<AnimeSummaryResponse> browseSeasonalAnime(
             Integer year,
             String season);
+
+    List<Anime> getAllAnimes();
+
+    Page<Anime> getAllAnimes(Pageable pageable);
 }

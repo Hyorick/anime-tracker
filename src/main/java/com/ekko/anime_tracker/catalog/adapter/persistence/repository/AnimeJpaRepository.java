@@ -6,6 +6,9 @@ import com.ekko.anime_tracker.catalog.adapter.persistence.entity.StudioEntity;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.domain.AnimeRepository;
 import com.ekko.anime_tracker.catalog.adapter.persistence.mapper.AnimeEntityMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -93,6 +96,18 @@ public class AnimeJpaRepository implements AnimeRepository {
                 .stream()
                 .map(animeEntityMapper::toDomain)
                 .toList();
+    }
+
+    @Override
+    public Page<Anime> findAll(Pageable pageable) {
+        return animeRepository.findAll(pageable)
+                .map(animeEntityMapper::toDomain);
+    }
+
+    @Override
+    public Page<Anime> findAll(Specification<AnimeEntity> specification, Pageable pageable) {
+        return animeRepository.findAll(specification, pageable)
+                .map(animeEntityMapper::toDomain);
     }
 
     @Override
