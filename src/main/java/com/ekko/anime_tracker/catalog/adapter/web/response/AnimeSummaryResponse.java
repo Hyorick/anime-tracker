@@ -1,5 +1,6 @@
 package com.ekko.anime_tracker.catalog.adapter.web.response;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public record AnimeSummaryResponse(
@@ -8,7 +9,8 @@ public record AnimeSummaryResponse(
 
         String title,
 
-        Integer releaseYear,
+        //Integer releaseYear,
+        LocalDate releaseDate,
 
         String studio,
 

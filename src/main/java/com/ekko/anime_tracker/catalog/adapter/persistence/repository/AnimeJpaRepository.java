@@ -4,7 +4,6 @@ import com.ekko.anime_tracker.catalog.adapter.persistence.entity.AnimeEntity;
 import com.ekko.anime_tracker.catalog.adapter.persistence.entity.GenreEntity;
 import com.ekko.anime_tracker.catalog.adapter.persistence.entity.StudioEntity;
 import com.ekko.anime_tracker.catalog.domain.Anime;
-import com.ekko.anime_tracker.catalog.domain.AnimeRepository;
 import com.ekko.anime_tracker.catalog.adapter.persistence.mapper.AnimeEntityMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

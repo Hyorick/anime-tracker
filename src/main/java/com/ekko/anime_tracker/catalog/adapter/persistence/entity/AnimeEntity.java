@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,8 @@ public class AnimeEntity {
     @Column(columnDefinition = "TEXT")
     private String synopsis;
 
-    private Integer releaseYear;
+    //private Integer releaseYear;
+    private LocalDate releaseDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "studio_id")

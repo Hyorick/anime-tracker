@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: anime-tracker-postgres-prod
+    environment:
+      POSTGRES_DB: anime_tracker
+      POSTGRES_USER: produser
+      POSTGRES_PASSWORD: postgres-prod
+    ports:
+      - "5433:5432"

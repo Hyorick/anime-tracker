@@ -3,12 +3,8 @@ package com.ekko.anime_tracker.catalog.adapter.web.mapper.response;
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.domain.Genre;
-import com.ekko.anime_tracker.catalog.domain.Season;
-import com.ekko.anime_tracker.catalog.domain.Studio;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface SummaryResponseMapper extends ResponseMapper<Anime, AnimeSummaryResponse> {

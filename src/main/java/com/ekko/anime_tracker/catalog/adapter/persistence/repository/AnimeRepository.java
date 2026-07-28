@@ -1,6 +1,7 @@
-package com.ekko.anime_tracker.catalog.domain;
+package com.ekko.anime_tracker.catalog.adapter.persistence.repository;
 
 import com.ekko.anime_tracker.catalog.adapter.persistence.entity.AnimeEntity;
+import com.ekko.anime_tracker.catalog.domain.Anime;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;

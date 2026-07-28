@@ -3,7 +3,7 @@ package com.ekko.anime_tracker.catalog.usecase.impl;
 import com.ekko.anime_tracker.catalog.adapter.web.mapper.request.AnimeRequestMapper;
 import com.ekko.anime_tracker.catalog.adapter.web.request.*;
 import com.ekko.anime_tracker.catalog.domain.Anime;
-import com.ekko.anime_tracker.catalog.domain.AnimeRepository;
+import com.ekko.anime_tracker.catalog.adapter.persistence.repository.AnimeRepository;
 import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogCommandService;
 import org.springframework.stereotype.Service;
 

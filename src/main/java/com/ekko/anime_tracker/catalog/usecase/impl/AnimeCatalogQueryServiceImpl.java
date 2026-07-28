@@ -1,20 +1,20 @@
 package com.ekko.anime_tracker.catalog.usecase.impl;
 
-import com.ekko.anime_tracker.catalog.adapter.persistence.entity.AnimeEntity;
-import com.ekko.anime_tracker.catalog.adapter.persistence.mapper.AnimeEntityMapper;
 import com.ekko.anime_tracker.catalog.adapter.persistence.repository.AnimeSpecification;
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
-import com.ekko.anime_tracker.catalog.domain.AnimeRepository;
+import com.ekko.anime_tracker.catalog.adapter.persistence.repository.AnimeRepository;
 import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogQueryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 public class AnimeCatalogQueryServiceImpl implements AnimeCatalogQueryService {
     private final AnimeRepository animeRepository;
 

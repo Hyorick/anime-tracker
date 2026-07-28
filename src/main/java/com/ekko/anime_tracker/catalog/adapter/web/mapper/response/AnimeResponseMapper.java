@@ -4,7 +4,6 @@ import com.ekko.anime_tracker.catalog.adapter.web.mapper.request.SeasonResponseM
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.domain.Genre;
-import com.ekko.anime_tracker.catalog.domain.Studio;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

@@ -6,9 +6,9 @@ import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeResponse;
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.usecase.impl.AnimeCatalogQueryServiceImpl;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +33,8 @@ public class CatalogQueryController {
     public Page<AnimeResponse> searchAnime(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String genre,
-            @RequestParam(required = false) String studio, Pageable pageable) {
+            @RequestParam(required = false) String studio,
+            @ParameterObject Pageable pageable) {
 
         Page<Anime> animes = service.search(title, genre, studio, pageable);
         return animes
@@ -60,7 +61,7 @@ public class CatalogQueryController {
     }
 
     @GetMapping(path = "/animes/page")
-    public Page<AnimeResponse> listsAnime(Pageable pageable) {
+    public Page<AnimeResponse> listsAnime(@ParameterObject Pageable pageable) {
         Page<Anime> animes = service.getAllAnimes(pageable);
         return animes
                 .map(animeResponseMapper::toResponse);
