@@ -1,7 +1,7 @@
 services:
   postgres:
-    container_name: anime-tracker-postgres-prod
+    container_name: anime-tracker-postgres-dev
     environment:
       POSTGRES_DB: anime_tracker
     ports:
-      - "5433:5432"
+      - "5432:5432"
