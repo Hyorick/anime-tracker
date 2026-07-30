@@ -13,7 +13,12 @@ import java.time.LocalDate;
 public class EpisodeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "episode_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "episode_seq")
+    @SequenceGenerator(
+            name = "episode_seq",
+            sequenceName = "episode_id_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     private Integer episodeNumber;

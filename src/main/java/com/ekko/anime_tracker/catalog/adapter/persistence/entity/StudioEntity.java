@@ -7,11 +7,24 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "studios")
+@Table(
+    name = "studios",
+    uniqueConstraints = {
+        @UniqueConstraint(
+                name = "uk_studios_name",
+                columnNames = "name"
+        )
+    }
+)
 public class StudioEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "studio_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "studio_seq")
+    @SequenceGenerator(
+            name = "studio_seq",
+            sequenceName = "studio_id_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(nullable = false, unique = true)

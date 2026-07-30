@@ -15,7 +15,12 @@ import java.util.List;
 public class SeasonEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "season_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "season_seq")
+    @SequenceGenerator(
+            name = "season_seq",
+            sequenceName = "season_id_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     private Integer seasonNumber;

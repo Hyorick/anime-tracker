@@ -15,7 +15,12 @@ import java.util.List;
 public class AnimeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "anime_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "anime_seq")
+    @SequenceGenerator(
+            name = "anime_seq",
+            sequenceName = "anime_id_seq",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(nullable = false, unique = true)
