@@ -5,7 +5,7 @@ import com.ekko.anime_tracker.catalog.adapter.web.mapper.response.SummaryRespons
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeResponse;
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
-import com.ekko.anime_tracker.catalog.usecase.impl.AnimeCatalogQueryServiceImpl;
+import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogQueryService;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,11 +19,11 @@ import java.util.Optional;
 @RequestMapping("/api/catalog")
 public class CatalogQueryController {
 
-    private final AnimeCatalogQueryServiceImpl service;
+    private final AnimeCatalogQueryService service;
     private final AnimeResponseMapper animeResponseMapper;
     private final SummaryResponseMapper summaryMapper;
 
-    public CatalogQueryController(AnimeCatalogQueryServiceImpl service, AnimeResponseMapper animeResponseMapper, SummaryResponseMapper summaryMapper) {
+    public CatalogQueryController(AnimeCatalogQueryService service, AnimeResponseMapper animeResponseMapper, SummaryResponseMapper summaryMapper) {
         this.service = service;
         this.animeResponseMapper = animeResponseMapper;
         this.summaryMapper = summaryMapper;
@@ -42,8 +42,7 @@ public class CatalogQueryController {
     }
 
     @GetMapping("/animes/{animeId}")
-    public ResponseEntity<AnimeResponse> getAnimeDetails(
-            @PathVariable Long animeId) {
+    public ResponseEntity<AnimeResponse> getAnimeDetails(@PathVariable Long animeId) {
 
         Optional<Anime> foundAnime = service.getAnimeDetails(animeId);
         return foundAnime
@@ -53,6 +52,7 @@ public class CatalogQueryController {
 
     @GetMapping(path = "/animes")
     public List<AnimeResponse> listsAnime() {
+
         List<Anime> animes = service.getAllAnimes();
         return animes
                 .stream()
@@ -62,14 +62,14 @@ public class CatalogQueryController {
 
     @GetMapping(path = "/animes/page")
     public Page<AnimeResponse> listsAnime(@ParameterObject Pageable pageable) {
+
         Page<Anime> animes = service.getAllAnimes(pageable);
         return animes
                 .map(animeResponseMapper::toResponse);
     }
 
     @GetMapping("/animes/genre/{genre}")
-    public List<AnimeSummaryResponse> searchByGenre(
-            @PathVariable String genre) {
+    public List<AnimeSummaryResponse> searchByGenre(@PathVariable String genre) {
 
         return service.searchByGenreName(genre)
                 .stream()
@@ -78,8 +78,7 @@ public class CatalogQueryController {
     }
 
     @GetMapping("/animes/studio/{studio}")
-    public List<AnimeSummaryResponse> searchByStudio(
-            @PathVariable String studio) {
+    public List<AnimeSummaryResponse> searchByStudio(@PathVariable String studio) {
 
         return service.searchByStudioName(studio)
                 .stream()

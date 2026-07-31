@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GenreServiceImpl implements GenreService {
+class GenreServiceImpl implements GenreService {
     private final SpringDataGenreRepository repository;
 
     public GenreServiceImpl(SpringDataGenreRepository repository) {

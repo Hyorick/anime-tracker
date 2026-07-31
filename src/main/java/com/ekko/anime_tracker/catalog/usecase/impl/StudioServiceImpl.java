@@ -6,7 +6,7 @@ import com.ekko.anime_tracker.catalog.usecase.StudioService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudioServiceImpl implements StudioService {
+class StudioServiceImpl implements StudioService {
 
     private final SpringDataStudioRepository repository;
 

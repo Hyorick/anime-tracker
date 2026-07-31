@@ -9,7 +9,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface SpringDataAnimeRepository extends JpaRepository<AnimeEntity, Long>, PagingAndSortingRepository<AnimeEntity, Long>, JpaSpecificationExecutor<AnimeEntity> {
+interface SpringDataAnimeRepository
+        extends JpaRepository<AnimeEntity, Long>, PagingAndSortingRepository<AnimeEntity, Long>, JpaSpecificationExecutor<AnimeEntity> {
 
     public Optional<AnimeEntity> findByTitle(String title);
 

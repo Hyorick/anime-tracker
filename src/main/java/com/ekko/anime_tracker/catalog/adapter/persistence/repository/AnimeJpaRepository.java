@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class AnimeJpaRepository implements AnimeRepository {
+class AnimeJpaRepository implements AnimeRepository {
 
     private final SpringDataAnimeRepository animeRepository;
     private final SpringDataGenreRepository genreRepository;
@@ -68,13 +68,11 @@ public class AnimeJpaRepository implements AnimeRepository {
 
     @Override
     public Optional<Anime> findByTitle(String title) {
-
         return animeRepository.findByTitle(title).map(animeEntityMapper::toDomain);
     }
 
     @Override
     public List<Anime> findByGenreName(String genreName) {
-
         return animeRepository.findByGenres_NameIgnoreCase(genreName)
                 .stream()
                 .map(animeEntityMapper::toDomain)
@@ -116,6 +114,6 @@ public class AnimeJpaRepository implements AnimeRepository {
 
     @Override
     public void delete(Anime anime) {
-            animeRepository.delete(animeEntityMapper.toEntity(anime));
+        animeRepository.delete(animeEntityMapper.toEntity(anime));
     }
 }

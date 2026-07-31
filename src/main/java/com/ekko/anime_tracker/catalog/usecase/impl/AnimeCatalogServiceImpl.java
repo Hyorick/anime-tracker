@@ -8,7 +8,7 @@ import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogCommandService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AnimeCatalogServiceImpl implements AnimeCatalogCommandService {
+class AnimeCatalogServiceImpl implements AnimeCatalogCommandService {
 
     private final AnimeRepository animeRepository;
     private final AnimeRequestMapper animeRequestMapper;
@@ -24,7 +24,6 @@ public class AnimeCatalogServiceImpl implements AnimeCatalogCommandService {
     // Anime
     // ==========================
     public Anime createAnime(CreateAnimeRequest request) {
-
         return animeRepository.save(animeRequestMapper.toDomain(request));
     }
 

@@ -12,6 +12,5 @@ import org.mapstruct.Mapper;
                 EpisodeResponseMapper.class
         }
 )
-public interface SeasonResponseMapper
-        extends ResponseMapper<Season, SeasonResponse> {
+public interface SeasonResponseMapper extends ResponseMapper<Season, SeasonResponse> {
 }

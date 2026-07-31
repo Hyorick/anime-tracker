@@ -5,6 +5,5 @@ import com.ekko.anime_tracker.catalog.domain.Episode;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface EpisodeResponseMapper
-        extends ResponseMapper<Episode, EpisodeResponse> {
+public interface EpisodeResponseMapper extends ResponseMapper<Episode, EpisodeResponse> {
 }

@@ -5,6 +5,5 @@ import com.ekko.anime_tracker.catalog.domain.Studio;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface StudioEntityMapper
-        extends AppMapper<Studio, StudioEntity> {
+public interface StudioEntityMapper extends AppMapper<Studio, StudioEntity> {
 }

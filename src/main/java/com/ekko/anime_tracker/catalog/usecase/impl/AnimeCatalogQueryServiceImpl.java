@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
-public class AnimeCatalogQueryServiceImpl implements AnimeCatalogQueryService {
+class AnimeCatalogQueryServiceImpl implements AnimeCatalogQueryService {
     private final AnimeRepository animeRepository;
 
     public AnimeCatalogQueryServiceImpl(AnimeRepository animeRepository) {
@@ -24,7 +24,6 @@ public class AnimeCatalogQueryServiceImpl implements AnimeCatalogQueryService {
 
     @Override
     public Page<Anime> search(String title, String genre, String studio, Pageable pageable) {
-
         return animeRepository.findAll(
                 AnimeSpecification.filter(title, genre, studio),
                 pageable
@@ -38,13 +37,11 @@ public class AnimeCatalogQueryServiceImpl implements AnimeCatalogQueryService {
 
     @Override
     public List<Anime> searchByGenreName(String genre) {
-
         return animeRepository.findByGenreName(genre);
     }
 
     @Override
     public List<Anime> searchByStudioName(String studio) {
-
         return animeRepository.findByStudioName(studio);
     }
 

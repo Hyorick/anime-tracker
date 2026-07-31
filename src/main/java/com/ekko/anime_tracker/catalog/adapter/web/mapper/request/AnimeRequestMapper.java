@@ -8,8 +8,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = SeasonRequestMapper.class)
-public interface AnimeRequestMapper
-        extends RequestMapper<Anime, CreateAnimeRequest> {
+public interface AnimeRequestMapper extends RequestMapper<Anime, CreateAnimeRequest> {
 
     @Override
     @Mapping(target = "id", ignore = true)

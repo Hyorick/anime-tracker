@@ -5,8 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface SpringDataStudioRepository
-        extends JpaRepository<StudioEntity, Long> {
+public interface SpringDataStudioRepository extends JpaRepository<StudioEntity, Long> {
 
     Optional<StudioEntity> findByName(String name);
 

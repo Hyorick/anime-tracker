@@ -8,6 +8,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface SummaryResponseMapper extends ResponseMapper<Anime, AnimeSummaryResponse> {
+
     @Mapping(target = "studio", source = "studio.name")
     @Mapping(target = "seasonCount", expression = "java(getSeasonCount(anime))")
     @Mapping(target = "episodeCount", expression = "java(getEpisodeCount(anime))")

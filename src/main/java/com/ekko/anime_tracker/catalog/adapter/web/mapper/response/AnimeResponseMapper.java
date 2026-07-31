@@ -13,8 +13,7 @@ import org.mapstruct.Mapping;
                 SeasonResponseMapper.class
         }
 )
-public interface AnimeResponseMapper
-        extends ResponseMapper<Anime, AnimeResponse> {
+public interface AnimeResponseMapper extends ResponseMapper<Anime, AnimeResponse> {
 
         @Mapping(target = "studio", source = "studio.name")
         AnimeResponse toResponse(Anime anime);

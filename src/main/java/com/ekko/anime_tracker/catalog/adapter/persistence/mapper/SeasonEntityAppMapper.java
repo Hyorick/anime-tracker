@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = EpisodeEntityAppMapper.class)
-public interface SeasonEntityAppMapper
-        extends AppMapper<Season, SeasonEntity> {
+public interface SeasonEntityAppMapper extends AppMapper<Season, SeasonEntity> {
 
     @AfterMapping
     default void linkEpisodes(@MappingTarget SeasonEntity season) {

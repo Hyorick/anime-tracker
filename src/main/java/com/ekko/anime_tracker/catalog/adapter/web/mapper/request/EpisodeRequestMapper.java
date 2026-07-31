@@ -5,8 +5,7 @@ import com.ekko.anime_tracker.catalog.domain.Episode;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface EpisodeRequestMapper
-        extends RequestMapper<Episode, CreateEpisodeRequest> {
+public interface EpisodeRequestMapper extends RequestMapper<Episode, CreateEpisodeRequest> {
 /*
     @Override
     @Mapping(target = "id", ignore = true)

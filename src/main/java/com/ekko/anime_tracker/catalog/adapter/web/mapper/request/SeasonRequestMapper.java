@@ -10,6 +10,5 @@ import org.mapstruct.Mapper;
                 EpisodeRequestMapper.class
         }
 )
-public interface SeasonRequestMapper
-        extends RequestMapper<Season, CreateSeasonRequest> {
+public interface SeasonRequestMapper extends RequestMapper<Season, CreateSeasonRequest> {
 }
