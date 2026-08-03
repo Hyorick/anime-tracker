@@ -13,6 +13,8 @@ public interface AnimeRepository {
 
     Anime save(Anime anime);
 
+    boolean exists(Long animeId);
+
     Optional<Anime> findById(Long id);
 
     Optional<Anime> findByTitle(String title);

@@ -9,13 +9,13 @@ public interface AnimeCatalogCommandService {
 
     void updateAnime(Long animeId, UpdateAnimeRequest request);
 
-    void deleteAnime(Long animeId);
+    void removeAnime(Long animeId);
 
     void addSeason(Long animeId, CreateSeasonRequest request);
 
     void updateSeason(Long animeId, Long seasonId, UpdateSeasonRequest request);
 
-    void deleteSeason(Long animeId, Long seasonId);
+    void removeSeason(Long animeId, Long seasonId);
 
     void addEpisode(Long animeId, Long seasonId, CreateEpisodeRequest request);
 
@@ -24,7 +24,7 @@ public interface AnimeCatalogCommandService {
                        Long episodeId,
                        UpdateEpisodeRequest request);
 
-    void deleteEpisode(Long animeId,
+    void removeEpisode(Long animeId,
                        Long seasonId,
                        Long episodeId);
 }

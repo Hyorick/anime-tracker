@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -61,6 +62,12 @@ class AnimeJpaRepository implements AnimeRepository {
         return animeEntityMapper.toDomain(savedAnimeEntity);
     }
 
+    @Override
+    public boolean exists(Long animeId) {
+        return animeRepository.existsById(animeId);
+    }
+
+    @Transactional(readOnly = true)
     @Override
     public Optional<Anime> findById(Long id) {
         return animeRepository.findById(id).map(animeEntityMapper::toDomain);

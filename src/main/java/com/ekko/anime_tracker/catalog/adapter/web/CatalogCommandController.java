@@ -52,9 +52,9 @@ public class CatalogCommandController {
     }
 
     @DeleteMapping("/animes/{animeId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAnime(@PathVariable Long animeId) {
-        //service.deleteAnime(animeId);
+    public ResponseEntity<String> deleteAnime(@PathVariable Long animeId) {
+        service.removeAnime(animeId);
+        return ResponseEntity.ok("Anime deleted successfully");
     }
 
     // ==========================
@@ -80,12 +80,12 @@ public class CatalogCommandController {
     }
 
     @DeleteMapping("/animes/{animeId}/seasons/{seasonId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteSeason(
+    public ResponseEntity<String> deleteSeason(
             @PathVariable Long animeId,
             @PathVariable Long seasonId) {
 
-        //service.deleteSeason(animeId, seasonId);
+        service.removeSeason(animeId, seasonId);
+        return ResponseEntity.ok("Season id %d deleted successfully from Anime id %d".formatted(seasonId, animeId));
     }
 
     // ==========================
@@ -113,12 +113,12 @@ public class CatalogCommandController {
     }
 
     @DeleteMapping("/animes/{animeId}/seasons/{seasonId}/episodes/{episodeId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEpisode(
+    public ResponseEntity<String> deleteEpisode(
             @PathVariable Long animeId,
             @PathVariable Long seasonId,
             @PathVariable Long episodeId) {
 
-        //service.deleteEpisode(animeId, seasonId, episodeId);
+        service.removeEpisode(animeId, seasonId, episodeId);
+        return ResponseEntity.ok("Episode id %d deleted successfully in Season id %d from Anime id %d".formatted(episodeId, seasonId, animeId));
     }
 }
