@@ -1,7 +1,5 @@
-package com.ekko.anime_tracker.catalog.adapter.web.mapper.request;
+package com.ekko.anime_tracker.catalog.adapter.web.mapper.response;
 
-import com.ekko.anime_tracker.catalog.adapter.web.mapper.response.EpisodeResponseMapper;
-import com.ekko.anime_tracker.catalog.adapter.web.mapper.response.ResponseMapper;
 import com.ekko.anime_tracker.catalog.adapter.web.response.SeasonResponse;
 import com.ekko.anime_tracker.catalog.domain.Season;
 import org.mapstruct.Mapper;

@@ -11,6 +11,8 @@ public record SeasonResponse(
 
         String title,
 
+        String description,
+
         LocalDate releaseDate,
 
         List<EpisodeResponse> episodes

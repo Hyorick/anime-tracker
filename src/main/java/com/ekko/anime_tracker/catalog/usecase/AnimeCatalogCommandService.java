@@ -2,6 +2,7 @@ package com.ekko.anime_tracker.catalog.usecase;
 
 import com.ekko.anime_tracker.catalog.adapter.web.request.*;
 import com.ekko.anime_tracker.catalog.domain.Anime;
+import com.ekko.anime_tracker.catalog.domain.Season;
 
 public interface AnimeCatalogCommandService {
 

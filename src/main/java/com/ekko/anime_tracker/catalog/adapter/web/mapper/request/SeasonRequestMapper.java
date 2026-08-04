@@ -1,8 +1,13 @@
 package com.ekko.anime_tracker.catalog.adapter.web.mapper.request;
 
+import com.ekko.anime_tracker.catalog.adapter.web.request.CreateEpisodeRequest;
 import com.ekko.anime_tracker.catalog.adapter.web.request.CreateSeasonRequest;
+import com.ekko.anime_tracker.catalog.adapter.web.request.UpdateSeasonRequest;
+import com.ekko.anime_tracker.catalog.domain.Episode;
 import com.ekko.anime_tracker.catalog.domain.Season;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(
         componentModel = "spring",
@@ -11,4 +16,13 @@ import org.mapstruct.Mapper;
         }
 )
 public interface SeasonRequestMapper extends RequestMapper<Season, CreateSeasonRequest> {
+
+    @Override
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "animeId", ignore = true)
+    Season toDomain(CreateSeasonRequest request);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "animeId", ignore = true)
+    void updateSeason(UpdateSeasonRequest request, @MappingTarget Season season);
 }

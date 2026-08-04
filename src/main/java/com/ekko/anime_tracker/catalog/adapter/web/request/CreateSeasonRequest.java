@@ -14,9 +14,12 @@ public record CreateSeasonRequest(
         @NotBlank
         String title,
 
+        String description,
+
         @NotNull
         LocalDate releaseDate,
 
+        @NotNull
         List<CreateEpisodeRequest> episodes
 
 ) {}

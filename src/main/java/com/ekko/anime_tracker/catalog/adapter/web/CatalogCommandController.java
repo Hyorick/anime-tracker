@@ -6,6 +6,7 @@ import com.ekko.anime_tracker.catalog.adapter.web.request.*;
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogCommandService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class CatalogCommandController {
 
     @PostMapping("/animes")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<AnimeResponse> createAnime(@RequestBody CreateAnimeRequest request) {
+    public ResponseEntity<AnimeResponse> createAnime(@Valid @RequestBody CreateAnimeRequest request) {
         Anime anime = service.createAnime(request);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -46,7 +47,7 @@ public class CatalogCommandController {
     @PutMapping("/animes/{animeId}")
     public void updateAnime(
             @PathVariable Long animeId,
-            @RequestBody UpdateAnimeRequest request) {
+            @Valid @RequestBody UpdateAnimeRequest request) {
 
         //service.updateAnime(animeId, request);
     }
@@ -63,20 +64,24 @@ public class CatalogCommandController {
 
     @PostMapping("/animes/{animeId}/seasons")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addSeason(
+    public ResponseEntity<String> addSeason(
             @PathVariable Long animeId,
-            @RequestBody CreateSeasonRequest request) {
+            @Valid @RequestBody CreateSeasonRequest request) {
 
-        //service.addSeason(animeId, request);
+        service.addSeason(animeId, request);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body("Season '%s' added successfully in Anime id %d".formatted(request.title(), animeId));
     }
 
     @PutMapping("/animes/{animeId}/seasons/{seasonId}")
-    public void updateSeason(
+    public ResponseEntity<String> updateSeason(
             @PathVariable Long animeId,
             @PathVariable Long seasonId,
-            @RequestBody UpdateSeasonRequest request) {
+            @Valid @RequestBody UpdateSeasonRequest request) {
 
-        //service.updateSeason(animeId, seasonId, request);
+        service.updateSeason(animeId, seasonId, request);
+        return ResponseEntity.ok("Season id %d updated successfully in Anime id %d".formatted(seasonId, animeId));
     }
 
     @DeleteMapping("/animes/{animeId}/seasons/{seasonId}")
@@ -94,22 +99,26 @@ public class CatalogCommandController {
 
     @PostMapping("/animes/{animeId}/seasons/{seasonId}/episodes")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addEpisode(
+    public ResponseEntity<String> addEpisode(
             @PathVariable Long animeId,
             @PathVariable Long seasonId,
-            @RequestBody CreateEpisodeRequest request) {
+            @Valid @RequestBody CreateEpisodeRequest request) {
 
-        //service.addEpisode(animeId, seasonId, request);
+        service.addEpisode(animeId, seasonId, request);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body("Episode '%s' added successfully in Season id %d of Anime id %d".formatted(request.title(), seasonId, animeId));
     }
 
-    @PutMapping("/animes/{animeId}/seasons/{seasonId}/episodes/{episodeId}")
-    public void updateEpisode(
+        @PutMapping("/animes/{animeId}/seasons/{seasonId}/episodes/{episodeId}")
+    public ResponseEntity<String> updateEpisode(
             @PathVariable Long animeId,
             @PathVariable Long seasonId,
             @PathVariable Long episodeId,
-            @RequestBody UpdateEpisodeRequest request) {
+            @Valid @RequestBody UpdateEpisodeRequest request) {
 
-        //service.updateEpisode(animeId, seasonId, episodeId, request);
+        service.updateEpisode(animeId, seasonId, episodeId, request);
+        return ResponseEntity.ok("Episode id %d updated successfully in Season id %d of Anime id %d".formatted(episodeId, seasonId, animeId));
     }
 
     @DeleteMapping("/animes/{animeId}/seasons/{seasonId}/episodes/{episodeId}")
@@ -119,6 +128,6 @@ public class CatalogCommandController {
             @PathVariable Long episodeId) {
 
         service.removeEpisode(animeId, seasonId, episodeId);
-        return ResponseEntity.ok("Episode id %d deleted successfully in Season id %d from Anime id %d".formatted(episodeId, seasonId, animeId));
+        return ResponseEntity.ok("Episode id %d deleted successfully in Season id %d of Anime id %d".formatted(episodeId, seasonId, animeId));
     }
 }

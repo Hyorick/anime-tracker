@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Positive;
 import java.time.LocalDate;
 
 public record CreateEpisodeRequest(
-//ajouter attribut sur la season
+
         @Positive
         int episodeNumber,
 

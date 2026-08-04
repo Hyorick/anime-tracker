@@ -23,6 +23,7 @@ public record CreateAnimeRequest(
         @NotEmpty
         List<String> genres,
 
+        @NotNull
         List<CreateSeasonRequest> seasons
 
 ) {}
