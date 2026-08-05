@@ -2,7 +2,6 @@ package com.ekko.anime_tracker.catalog.usecase;
 
 import com.ekko.anime_tracker.catalog.adapter.web.request.*;
 import com.ekko.anime_tracker.catalog.domain.Anime;
-import jakarta.validation.Valid;
 
 public interface AnimeCatalogCommandService {
 
