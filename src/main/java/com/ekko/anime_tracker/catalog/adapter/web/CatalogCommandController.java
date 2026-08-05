@@ -36,13 +36,14 @@ public class CatalogCommandController {
                 .body( animeResponseMapper.toResponse(anime) );
     }
 
-    /*@PatchMapping("/animes/{animeId}")
-    public void updateAnime(
+    @PatchMapping("/animes/{animeId}")
+    public ResponseEntity<String> patchAnime(
             @PathVariable Long animeId,
-            @RequestBody UpdateAnimeRequest request) {
+            @Valid @RequestBody PatchAnimeRequest request) {
 
-        //service.updateAnime(animeId, request);
-    }*/
+        service.patchAnime(animeId, request);
+        return ResponseEntity.ok("Anime id %d patched successfully".formatted(animeId));
+    }
 
     @PutMapping("/animes/{animeId}")
     public void updateAnime(
@@ -72,6 +73,18 @@ public class CatalogCommandController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body("Season '%s' added successfully in Anime id %d".formatted(request.title(), animeId));
+    }
+
+    @PatchMapping("/animes/{animeId}/seasons/{seasonId}")
+    public ResponseEntity<String> patchSeason(
+            @PathVariable Long animeId,
+            @PathVariable Long seasonId,
+            @Valid @RequestBody PatchSeasonRequest request) {
+
+        service.patchSeason(animeId, seasonId, request);
+        return ResponseEntity.ok("Season id %d patched successfully in Anime id %d"
+                .formatted(seasonId, animeId)
+        );
     }
 
     @PutMapping("/animes/{animeId}/seasons/{seasonId}")
@@ -110,7 +123,20 @@ public class CatalogCommandController {
                 .body("Episode '%s' added successfully in Season id %d of Anime id %d".formatted(request.title(), seasonId, animeId));
     }
 
-        @PutMapping("/animes/{animeId}/seasons/{seasonId}/episodes/{episodeId}")
+    @PatchMapping("/animes/{animeId}/seasons/{seasonId}/episodes/{episodeId}")
+    public ResponseEntity<String> patchEpisode(
+            @PathVariable Long animeId,
+            @PathVariable Long seasonId,
+            @PathVariable Long episodeId,
+            @Valid @RequestBody PatchEpisodeRequest request) {
+
+        service.patchEpisode(animeId, seasonId, episodeId, request);
+        return ResponseEntity.ok("Episode id %d patched successfully in Season id %d of Anime id %d"
+                        .formatted(episodeId, seasonId, animeId)
+        );
+    }
+
+    @PutMapping("/animes/{animeId}/seasons/{seasonId}/episodes/{episodeId}")
     public ResponseEntity<String> updateEpisode(
             @PathVariable Long animeId,
             @PathVariable Long seasonId,

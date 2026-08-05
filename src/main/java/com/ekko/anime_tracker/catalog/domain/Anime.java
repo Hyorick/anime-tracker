@@ -21,6 +21,8 @@ public class Anime {
     @EqualsAndHashCode.Include
     private String title;// doit etre unique
 
+    //string originalTitle in japanese
+
     private String synopsis;
     //private LocalDate releaseYear;
     private LocalDate releaseDate;

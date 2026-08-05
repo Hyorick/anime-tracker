@@ -1,11 +1,11 @@
 package com.ekko.anime_tracker.catalog.adapter.web.mapper.request;
 
 import com.ekko.anime_tracker.catalog.adapter.web.request.CreateAnimeRequest;
+import com.ekko.anime_tracker.catalog.adapter.web.request.PatchAnimeRequest;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.domain.Genre;
 import com.ekko.anime_tracker.catalog.domain.Studio;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring", uses = SeasonRequestMapper.class)
 public interface AnimeRequestMapper extends RequestMapper<Anime, CreateAnimeRequest> {
@@ -25,4 +25,9 @@ public interface AnimeRequestMapper extends RequestMapper<Anime, CreateAnimeRequ
         s.setName(studio);
         return s;
     }
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "seasons", ignore = true)
+    void patchAnime(PatchAnimeRequest request, @MappingTarget Anime anime);
 }

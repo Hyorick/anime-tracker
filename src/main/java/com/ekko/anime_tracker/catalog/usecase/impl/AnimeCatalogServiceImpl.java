@@ -37,6 +37,20 @@ class AnimeCatalogServiceImpl implements AnimeCatalogCommandService {
         return animeRepository.save(animeRequestMapper.toDomain(request));
     }
 
+    @Transactional
+    @Override
+    public void patchAnime(Long animeId, PatchAnimeRequest request) {
+        Anime anime = animeRepository.findById(animeId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Anime with id %d not found".formatted(animeId)
+                        ));
+
+        animeRequestMapper.patchAnime(request, anime);
+
+        animeRepository.save(anime);
+    }
+
     @Override
     public void updateAnime(Long animeId, UpdateAnimeRequest request) {
 
@@ -65,6 +79,29 @@ class AnimeCatalogServiceImpl implements AnimeCatalogCommandService {
                                 "Anime with id %d not found".formatted(animeId)
                         ));
         anime.getSeasons().add(seasonRequestMapper.toDomain(request));
+
+        animeRepository.save(anime);
+    }
+
+    @Transactional
+    @Override
+    public void patchSeason(Long animeId, Long seasonId, PatchSeasonRequest request) {
+        Anime anime = animeRepository.findById(animeId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Anime with id %d not found".formatted(animeId)
+                        ));
+
+        Season season = anime.getSeasons().stream()
+                .filter(s -> s.getId().equals(seasonId))
+                .findFirst()
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Season with id %d not found in anime '%s'"
+                                        .formatted(seasonId, anime.getTitle())
+                        ));
+
+        seasonRequestMapper.patchSeason(request, season);
 
         animeRepository.save(anime);
     }
@@ -145,6 +182,38 @@ class AnimeCatalogServiceImpl implements AnimeCatalogCommandService {
                                         .formatted(seasonId, anime.getTitle())
                         ));
         season.getEpisodes().add(episodeRequestMapper.toDomain(request));
+
+        animeRepository.save(anime);
+    }
+
+    @Transactional
+    @Override
+    public void patchEpisode(Long animeId, Long seasonId, Long episodeId, PatchEpisodeRequest request) {
+        Anime anime = animeRepository.findById(animeId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Anime with id %d not found".formatted(animeId)
+                        ));
+
+        Season season = anime.getSeasons().stream()
+                .filter(s -> s.getId().equals(seasonId))
+                .findFirst()
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Season with id %d not found in anime '%s'"
+                                        .formatted(seasonId, anime.getTitle())
+                        ));
+
+        Episode episode = season.getEpisodes().stream()
+                .filter(e -> e.getId().equals(episodeId))
+                .findFirst()
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Episode with id %d not found in season %d"
+                                        .formatted(episodeId, seasonId)
+                        ));
+
+        episodeRequestMapper.patchEpisode(request, episode);
 
         animeRepository.save(anime);
     }
