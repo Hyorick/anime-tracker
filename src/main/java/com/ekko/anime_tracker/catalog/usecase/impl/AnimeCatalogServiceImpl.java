@@ -292,9 +292,4 @@ class AnimeCatalogServiceImpl implements AnimeCatalogCommandService {
         animeRepository.save(anime);
     }
 
-/*
-    public Anime updateAnime(...) {
-
-    }
-*/
 }
