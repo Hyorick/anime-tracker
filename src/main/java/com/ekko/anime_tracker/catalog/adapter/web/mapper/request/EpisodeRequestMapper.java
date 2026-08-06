@@ -15,6 +15,7 @@ public interface EpisodeRequestMapper extends RequestMapper<Episode, CreateEpiso
     Episode toDomain(CreateEpisodeRequest request);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "seasonId", ignore = true)
     void updateEpisode(UpdateEpisodeRequest request, @MappingTarget Episode episode);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

@@ -51,9 +51,18 @@ class AnimeCatalogServiceImpl implements AnimeCatalogCommandService {
         animeRepository.save(anime);
     }
 
+    @Transactional
     @Override
     public void updateAnime(Long animeId, UpdateAnimeRequest request) {
+        Anime anime = animeRepository.findById(animeId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Anime with id %d not found".formatted(animeId)
+                        ));
 
+        animeRequestMapper.updateAnime(request, anime);
+
+        animeRepository.save(anime);
     }
 
     @Override

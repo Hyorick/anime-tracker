@@ -2,6 +2,7 @@ package com.ekko.anime_tracker.catalog.adapter.web.mapper.request;
 
 import com.ekko.anime_tracker.catalog.adapter.web.request.CreateAnimeRequest;
 import com.ekko.anime_tracker.catalog.adapter.web.request.PatchAnimeRequest;
+import com.ekko.anime_tracker.catalog.adapter.web.request.UpdateAnimeRequest;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.domain.Genre;
 import com.ekko.anime_tracker.catalog.domain.Studio;
@@ -25,6 +26,9 @@ public interface AnimeRequestMapper extends RequestMapper<Anime, CreateAnimeRequ
         s.setName(studio);
         return s;
     }
+
+    @Mapping(target = "id", ignore = true)
+    void updateAnime(UpdateAnimeRequest request, @MappingTarget Anime anime);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)

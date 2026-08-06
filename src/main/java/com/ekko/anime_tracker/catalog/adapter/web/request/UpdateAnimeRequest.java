@@ -1,9 +1,11 @@
 package com.ekko.anime_tracker.catalog.adapter.web.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public record UpdateAnimeRequest(
 
@@ -13,8 +15,15 @@ public record UpdateAnimeRequest(
         String synopsis,
 
         @NotNull
-        LocalDate releaseYear,
+        LocalDate releaseDate,
 
-        Long studioId
+        @NotBlank
+        String studio,
+
+        @NotEmpty
+        List<String> genres,
+
+        @NotNull
+        List<CreateSeasonRequest> seasons
 
 ) {}

@@ -46,11 +46,12 @@ public class CatalogCommandController {
     }
 
     @PutMapping("/animes/{animeId}")
-    public void updateAnime(
+    public ResponseEntity<String> updateAnime(
             @PathVariable Long animeId,
             @Valid @RequestBody UpdateAnimeRequest request) {
 
-        //service.updateAnime(animeId, request);
+        service.updateAnime(animeId, request);
+        return ResponseEntity.ok("Anime id %d updated successfully".formatted(animeId));
     }
 
     @DeleteMapping("/animes/{animeId}")
