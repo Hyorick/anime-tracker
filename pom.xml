@@ -29,8 +29,13 @@
 	<properties>
 		<java.version>21</java.version>
 
-		<sonar.projectKey>com.hyorick:anime-api</sonar.projectKey>
-		<sonar.projectName>Anime API</sonar.projectName>
+		<sonar.organization>Hyorick</sonar.organization>
+		<sonar.projectKey>animetracker</sonar.projectKey>
+		<sonar.projectName>Anime Tracker</sonar.projectName>
+
+		<sonar.coverage.jacoco.xmlReportPaths>
+			target/site/jacoco/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 	<dependencies>
 		<dependency>
