@@ -10,9 +10,7 @@ import lombok.*;
 @ToString
 public class Studio {
 
-    @EqualsAndHashCode.Include
-    private Long id;
+  @EqualsAndHashCode.Include private Long id;
 
-    @EqualsAndHashCode.Include
-    private String name; //doit etre unique
+  @EqualsAndHashCode.Include private String name; // doit etre unique
 }

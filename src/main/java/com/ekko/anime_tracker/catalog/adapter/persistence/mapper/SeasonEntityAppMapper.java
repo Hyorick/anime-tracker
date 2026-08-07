@@ -9,15 +9,13 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring", uses = EpisodeEntityAppMapper.class)
 public interface SeasonEntityAppMapper extends AppMapper<Season, SeasonEntity> {
 
-    @AfterMapping
-    default void linkEpisodes(@MappingTarget SeasonEntity season) {
+  @AfterMapping
+  default void linkEpisodes(@MappingTarget SeasonEntity season) {
 
-        if (season.getEpisodes() == null) {
-            return;
-        }
-
-        season.getEpisodes()
-                .forEach(ep -> ep.setSeason(season));
+    if (season.getEpisodes() == null) {
+      return;
     }
 
+    season.getEpisodes().forEach(ep -> ep.setSeason(season));
+  }
 }

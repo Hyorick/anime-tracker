@@ -9,29 +9,18 @@ import lombok.Setter;
 @Entity
 @Table(
     name = "genres",
-    uniqueConstraints = {
-        @UniqueConstraint(
-                name = "uk_genres_name",
-                columnNames = "name"
-        )
-    }
-)
+    uniqueConstraints = {@UniqueConstraint(name = "uk_genres_name", columnNames = "name")})
 public class GenreEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genre_seq")
-    @SequenceGenerator(
-            name = "genre_seq",
-            sequenceName = "genre_id_seq",
-            allocationSize = 1
-    )
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genre_seq")
+  @SequenceGenerator(name = "genre_seq", sequenceName = "genre_id_seq", allocationSize = 1)
+  private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String name;
+  @Column(nullable = false, unique = true)
+  private String name;
 
-    public GenreEntity() {
-    }
+  public GenreEntity() {}
 
-    // Getters & Setters
+  // Getters & Setters
 }

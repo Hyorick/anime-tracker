@@ -9,29 +9,18 @@ import lombok.Setter;
 @Entity
 @Table(
     name = "studios",
-    uniqueConstraints = {
-        @UniqueConstraint(
-                name = "uk_studios_name",
-                columnNames = "name"
-        )
-    }
-)
+    uniqueConstraints = {@UniqueConstraint(name = "uk_studios_name", columnNames = "name")})
 public class StudioEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "studio_seq")
-    @SequenceGenerator(
-            name = "studio_seq",
-            sequenceName = "studio_id_seq",
-            allocationSize = 1
-    )
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "studio_seq")
+  @SequenceGenerator(name = "studio_seq", sequenceName = "studio_id_seq", allocationSize = 1)
+  private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String name;
+  @Column(nullable = false, unique = true)
+  private String name;
 
-    public StudioEntity() {
-    }
+  public StudioEntity() {}
 
-    // Getters & Setters
+  // Getters & Setters
 }

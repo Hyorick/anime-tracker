@@ -4,18 +4,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 public record AnimeResponse(
-
-        Long id,
-
-        String title,
-
-        String synopsis,
-
-        LocalDate releaseDate,
-
-        String studio,
-
-        List<String> genres,
-
-        List<SeasonResponse> seasons
-) { }
+    Long id,
+    String title,
+    String synopsis,
+    LocalDate releaseDate,
+    String studio,
+    List<String> genres,
+    List<SeasonResponse> seasons) {}

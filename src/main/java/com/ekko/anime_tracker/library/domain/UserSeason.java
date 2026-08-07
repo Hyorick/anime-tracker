@@ -1,7 +1,5 @@
 package com.ekko.anime_tracker.library.domain;
 
-import com.ekko.anime_tracker.catalog.domain.Season;
-
 import java.time.Instant;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -19,14 +17,13 @@ import lombok.ToString;
 @ToString
 public class UserSeason {
 
-    @EqualsAndHashCode.Include
-    private Long id;
-    private Long userAnimeId;
-    private Long seasonId;
-   // private Season season;
-    private WatchStatus status;
-    private Integer currentEpisode;
-    private Instant startedAt;
-    private LocalDate finishedAt;
-    private Integer personalScore;
+  @EqualsAndHashCode.Include private Long id;
+  private Long userAnimeId;
+  private Long seasonId;
+  // private Season season;
+  private WatchStatus status;
+  private Integer currentEpisode;
+  private Instant startedAt;
+  private LocalDate finishedAt;
+  private Integer personalScore;
 }

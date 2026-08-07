@@ -1,12 +1,11 @@
 package com.ekko.anime_tracker.catalog.adapter.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -14,58 +13,48 @@ import java.util.List;
 @Table(name = "animes")
 public class AnimeEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "anime_seq")
-    @SequenceGenerator(
-            name = "anime_seq",
-            sequenceName = "anime_id_seq",
-            allocationSize = 1
-    )
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "anime_seq")
+  @SequenceGenerator(name = "anime_seq", sequenceName = "anime_id_seq", allocationSize = 1)
+  private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String title;
+  @Column(nullable = false, unique = true)
+  private String title;
 
-    @Column(columnDefinition = "TEXT")
-    private String synopsis;
+  @Column(columnDefinition = "TEXT")
+  private String synopsis;
 
-    //private Integer releaseYear;
-    private LocalDate releaseDate;
+  // private Integer releaseYear;
+  private LocalDate releaseDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "studio_id")
-    private StudioEntity studio;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "studio_id")
+  private StudioEntity studio;
 
-    @ManyToMany
-    @JoinTable(
-            name = "anime_genre",
-            joinColumns = @JoinColumn(name = "anime_id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_id")
-    )
-    private List<GenreEntity> genres = new ArrayList<>();
+  @ManyToMany
+  @JoinTable(
+      name = "anime_genre",
+      joinColumns = @JoinColumn(name = "anime_id"),
+      inverseJoinColumns = @JoinColumn(name = "genre_id"))
+  private List<GenreEntity> genres = new ArrayList<>();
 
-    @OneToMany(
-            mappedBy = "anime",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<SeasonEntity> seasons = new ArrayList<>();
+  @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<SeasonEntity> seasons = new ArrayList<>();
 
-    public AnimeEntity() {
-    }
+  public AnimeEntity() {}
 
-    // Getters & Setters
-    public void addSeason(SeasonEntity season) {
+  // Getters & Setters
+  public void addSeason(SeasonEntity season) {
 
-        seasons.add(season);
+    seasons.add(season);
 
-        season.setAnime(this);
-    }
+    season.setAnime(this);
+  }
 
-    public void removeSeason(SeasonEntity season) {
+  public void removeSeason(SeasonEntity season) {
 
-        seasons.remove(season);
+    seasons.remove(season);
 
-        season.setAnime(null);
-    }
+    season.setAnime(null);
+  }
 }

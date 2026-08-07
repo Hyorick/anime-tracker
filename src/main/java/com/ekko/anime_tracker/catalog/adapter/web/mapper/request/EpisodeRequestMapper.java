@@ -9,18 +9,17 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring")
 public interface EpisodeRequestMapper extends RequestMapper<Episode, CreateEpisodeRequest> {
 
-    @Override
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "seasonId", ignore = true)
-    Episode toDomain(CreateEpisodeRequest request);
+  @Override
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "seasonId", ignore = true)
+  Episode toDomain(CreateEpisodeRequest request);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "seasonId", ignore = true)
-    void updateEpisode(UpdateEpisodeRequest request, @MappingTarget Episode episode);
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "seasonId", ignore = true)
+  void updateEpisode(UpdateEpisodeRequest request, @MappingTarget Episode episode);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "seasonId", ignore = true)
-    void patchEpisode(PatchEpisodeRequest request, @MappingTarget Episode episode);
-
+  @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "seasonId", ignore = true)
+  void patchEpisode(PatchEpisodeRequest request, @MappingTarget Episode episode);
 }

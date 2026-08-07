@@ -7,17 +7,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(
-        componentModel = "spring",
-        uses = {
-                SeasonResponseMapper.class
-        }
-)
+    componentModel = "spring",
+    uses = {SeasonResponseMapper.class})
 public interface AnimeResponseMapper extends ResponseMapper<Anime, AnimeResponse> {
 
-        @Mapping(target = "studio", source = "studio.name")
-        AnimeResponse toResponse(Anime anime);
+  @Mapping(target = "studio", source = "studio.name")
+  AnimeResponse toResponse(Anime anime);
 
-        default String map(Genre genre) {
-                return genre.getName();
-        }
+  default String map(Genre genre) {
+    return genre.getName();
+  }
 }

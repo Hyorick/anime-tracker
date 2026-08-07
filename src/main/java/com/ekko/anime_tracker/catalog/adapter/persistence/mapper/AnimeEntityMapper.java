@@ -6,23 +6,18 @@ import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring",
-         uses = {
-        SeasonEntityAppMapper.class,
-        GenreEntityMapper.class,
-        StudioEntityMapper.class
-})
+@Mapper(
+    componentModel = "spring",
+    uses = {SeasonEntityAppMapper.class, GenreEntityMapper.class, StudioEntityMapper.class})
 public interface AnimeEntityMapper extends AppMapper<Anime, AnimeEntity> {
 
-    @AfterMapping
-    default void linkSeasons(@MappingTarget AnimeEntity anime) {
+  @AfterMapping
+  default void linkSeasons(@MappingTarget AnimeEntity anime) {
 
-        if (anime.getSeasons() == null) {
-            return;
-        }
-
-        anime.getSeasons()
-                .forEach(season -> season.setAnime(anime));
+    if (anime.getSeasons() == null) {
+      return;
     }
 
+    anime.getSeasons().forEach(season -> season.setAnime(anime));
+  }
 }

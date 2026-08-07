@@ -4,6 +4,5 @@ import com.ekko.anime_tracker.catalog.adapter.persistence.entity.StudioEntity;
 
 public interface StudioService {
 
-    StudioEntity resolveStudio(String name);
-
+  StudioEntity resolveStudio(String name);
 }

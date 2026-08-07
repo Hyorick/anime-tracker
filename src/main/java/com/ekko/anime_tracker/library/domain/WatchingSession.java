@@ -18,9 +18,8 @@ import lombok.ToString;
 @ToString
 public class WatchingSession {
 
-    @EqualsAndHashCode.Include
-    private Season season;
-    private Episode episode;
-    private LocalDateTime watchedAt;
-    private Integer duration;
+  @EqualsAndHashCode.Include private Season season;
+  private Episode episode;
+  private LocalDateTime watchedAt;
+  private Integer duration;
 }

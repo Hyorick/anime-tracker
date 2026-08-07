@@ -1,12 +1,11 @@
 package com.ekko.anime_tracker.catalog.adapter.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -14,49 +13,40 @@ import java.util.List;
 @Table(name = "seasons")
 public class SeasonEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "season_seq")
-    @SequenceGenerator(
-            name = "season_seq",
-            sequenceName = "season_id_seq",
-            allocationSize = 1
-    )
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "season_seq")
+  @SequenceGenerator(name = "season_seq", sequenceName = "season_id_seq", allocationSize = 1)
+  private Long id;
 
-    private Integer seasonNumber;
+  private Integer seasonNumber;
 
-    private String title;
+  private String title;
 
-    private String description;
+  private String description;
 
-    private LocalDate releaseDate;
+  private LocalDate releaseDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "anime_id", nullable = false)
-    private AnimeEntity anime;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "anime_id", nullable = false)
+  private AnimeEntity anime;
 
-    @OneToMany(
-            mappedBy = "season",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<EpisodeEntity> episodes = new ArrayList<>();
+  @OneToMany(mappedBy = "season", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<EpisodeEntity> episodes = new ArrayList<>();
 
-    public SeasonEntity() {
-    }
+  public SeasonEntity() {}
 
-    // Getters & Setters
-    public void addEpisode(EpisodeEntity episode) {
+  // Getters & Setters
+  public void addEpisode(EpisodeEntity episode) {
 
-        episodes.add(episode);
+    episodes.add(episode);
 
-        episode.setSeason(this);
-    }
+    episode.setSeason(this);
+  }
 
-    public void removeEpisode(EpisodeEntity episode) {
+  public void removeEpisode(EpisodeEntity episode) {
 
-        episodes.remove(episode);
+    episodes.remove(episode);
 
-        episode.setSeason(null);
-    }
+    episode.setSeason(null);
+  }
 }

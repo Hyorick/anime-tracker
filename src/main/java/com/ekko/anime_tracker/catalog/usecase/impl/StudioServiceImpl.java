@@ -8,20 +8,22 @@ import org.springframework.stereotype.Service;
 @Service
 class StudioServiceImpl implements StudioService {
 
-    private final SpringDataStudioRepository repository;
+  private final SpringDataStudioRepository repository;
 
-    public StudioServiceImpl(SpringDataStudioRepository repository) {
-        this.repository = repository;
-    }
+  public StudioServiceImpl(SpringDataStudioRepository repository) {
+    this.repository = repository;
+  }
 
-    @Override
-    public StudioEntity resolveStudio(String name) {
+  @Override
+  public StudioEntity resolveStudio(String name) {
 
-        return repository.findByName(name)
-                .orElseGet(() -> {
-                    StudioEntity studio = new StudioEntity();
-                    studio.setName(name);
-                    return repository.save(studio);
-                });
-    }
+    return repository
+        .findByName(name)
+        .orElseGet(
+            () -> {
+              StudioEntity studio = new StudioEntity();
+              studio.setName(name);
+              return repository.save(studio);
+            });
+  }
 }

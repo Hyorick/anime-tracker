@@ -5,44 +5,39 @@ import com.ekko.anime_tracker.catalog.domain.Anime;
 
 public interface AnimeCatalogCommandService {
 
-    // ==========================
-    // Anime
-    // ==========================
+  // ==========================
+  // Anime
+  // ==========================
 
-    Anime createAnime(CreateAnimeRequest request);
+  Anime createAnime(CreateAnimeRequest request);
 
-    void patchAnime(Long animeId, PatchAnimeRequest request);
+  void patchAnime(Long animeId, PatchAnimeRequest request);
 
-    void updateAnime(Long animeId, UpdateAnimeRequest request);
+  void updateAnime(Long animeId, UpdateAnimeRequest request);
 
-    void removeAnime(Long animeId);
+  void removeAnime(Long animeId);
 
-    // ==========================
-    // Season
-    // ==========================
+  // ==========================
+  // Season
+  // ==========================
 
-    void addSeason(Long animeId, CreateSeasonRequest request);
+  void addSeason(Long animeId, CreateSeasonRequest request);
 
-    void patchSeason(Long animeId, Long seasonId, PatchSeasonRequest request);
+  void patchSeason(Long animeId, Long seasonId, PatchSeasonRequest request);
 
-    void updateSeason(Long animeId, Long seasonId, UpdateSeasonRequest request);
+  void updateSeason(Long animeId, Long seasonId, UpdateSeasonRequest request);
 
-    void removeSeason(Long animeId, Long seasonId);
+  void removeSeason(Long animeId, Long seasonId);
 
-    // ==========================
-    // Episode
-    // ==========================
+  // ==========================
+  // Episode
+  // ==========================
 
-    void addEpisode(Long animeId, Long seasonId, CreateEpisodeRequest request);
+  void addEpisode(Long animeId, Long seasonId, CreateEpisodeRequest request);
 
-    void patchEpisode(Long animeId, Long seasonId, Long episodeId, PatchEpisodeRequest request);
+  void patchEpisode(Long animeId, Long seasonId, Long episodeId, PatchEpisodeRequest request);
 
-    void updateEpisode(Long animeId,
-                       Long seasonId,
-                       Long episodeId,
-                       UpdateEpisodeRequest request);
+  void updateEpisode(Long animeId, Long seasonId, Long episodeId, UpdateEpisodeRequest request);
 
-    void removeEpisode(Long animeId,
-                       Long seasonId,
-                       Long episodeId);
+  void removeEpisode(Long animeId, Long seasonId, Long episodeId);
 }

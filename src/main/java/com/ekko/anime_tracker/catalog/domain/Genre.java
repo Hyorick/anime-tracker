@@ -15,7 +15,6 @@ import lombok.ToString;
 @ToString
 public class Genre {
 
-    @EqualsAndHashCode.Include
-    private Long id;
-    private String name; // doit être unique
+  @EqualsAndHashCode.Include private Long id;
+  private String name; // doit être unique
 }

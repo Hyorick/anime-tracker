@@ -11,27 +11,27 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = SeasonRequestMapper.class)
 public interface AnimeRequestMapper extends RequestMapper<Anime, CreateAnimeRequest> {
 
-    @Override
-    @Mapping(target = "id", ignore = true)
-    Anime toDomain(CreateAnimeRequest request);
+  @Override
+  @Mapping(target = "id", ignore = true)
+  Anime toDomain(CreateAnimeRequest request);
 
-    default Genre map(String genre) {
-        Genre g = new Genre();
-        g.setName(genre);
-        return g;
-    }
+  default Genre map(String genre) {
+    Genre g = new Genre();
+    g.setName(genre);
+    return g;
+  }
 
-    default Studio mapStudio(String studio) {
-        Studio s = new Studio();
-        s.setName(studio);
-        return s;
-    }
+  default Studio mapStudio(String studio) {
+    Studio s = new Studio();
+    s.setName(studio);
+    return s;
+  }
 
-    @Mapping(target = "id", ignore = true)
-    void updateAnime(UpdateAnimeRequest request, @MappingTarget Anime anime);
+  @Mapping(target = "id", ignore = true)
+  void updateAnime(UpdateAnimeRequest request, @MappingTarget Anime anime);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "seasons", ignore = true)
-    void patchAnime(PatchAnimeRequest request, @MappingTarget Anime anime);
+  @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "seasons", ignore = true)
+  void patchAnime(PatchAnimeRequest request, @MappingTarget Anime anime);
 }
