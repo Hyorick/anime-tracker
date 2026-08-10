@@ -1,0 +1,73 @@
+name: Claude Code Review
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  claude-review:
+    name: Claude Code Review
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Claude Code Review
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            Perform a code review of this pull request.
+
+            Review the changes against the project instructions in CLAUDE.md.
+
+            Focus on concrete, actionable issues involving:
+
+            - Bugs and incorrect behavior
+            - Security vulnerabilities
+            - Data integrity
+            - Spring Boot usage
+            - JPA and database behavior
+            - Transaction boundaries
+            - REST API behavior
+            - Performance
+            - Maintainability
+            - Missing or inadequate tests
+
+            The project already uses Spotless and SonarCloud.
+
+            Do not report:
+            - Formatting issues handled by Spotless
+            - Trivial style preferences
+            - Simple findings that SonarCloud already handles
+            - Purely speculative problems without evidence
+
+            Prioritize correctness and security over style.
+
+            For every finding:
+            - Assign CRITICAL, HIGH, MEDIUM, or LOW severity.
+            - Explain the problem clearly.
+            - Explain why it matters.
+            - Suggest a concrete fix when appropriate.
+
+            Only report issues that are genuinely worth addressing.
+
+            This is a REVIEW ONLY.
+
+            Do not modify files.
+            Do not create commits.
+            Do not push changes.
+
+            If there are no significant issues, explicitly state that the pull request looks good.
