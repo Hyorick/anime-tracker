@@ -132,4 +132,4 @@ Base path: `/api/catalog`
 
 ```bash
 ./mvnw test
-```
+```Branch protection test
