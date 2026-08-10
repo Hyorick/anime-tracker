@@ -49,3 +49,8 @@ jobs:
           mvn -B --no-transfer-progress sonar:sonar \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.token="$SONAR_TOKEN"
+
+      - name: TEST - simulate CI failure
+        run: |
+          echo "Simulating CI failure for notification testing"
+          exit 1
