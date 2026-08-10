@@ -12,6 +12,7 @@ permissions:
   contents: read
   pull-requests: write
   issues: write
+  id-token: write
 
 jobs:
   claude-review:
@@ -25,7 +26,7 @@ jobs:
           fetch-depth: 0
 
       - name: Claude Code Review
-        uses: anthropics/claude-code-action@v1
+        uses: anthropics/claude-code-action@6b082c41935b4c8a3b8b0ef85ba4ba4d9eeb8975 # v1.0.189
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
