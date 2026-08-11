@@ -6,6 +6,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
   release:
     name: Create Release
@@ -17,6 +21,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Validate release branch
+        if: github.ref != 'refs/heads/main'
+        run: |
+          echo "ERROR: Releases can only be created from the main branch."
+          exit 1
+
       - name: Set up Java 21
         uses: actions/setup-java@v5
         with:
@@ -27,7 +37,7 @@ jobs:
       - name: Read Maven project version
         id: version
         run: |
-          VERSION=$(mvn help:evaluate \
+          VERSION=$(./mvnw help:evaluate \
             -Dexpression=project.version \
             -q \
             -DforceStdout)
@@ -36,9 +46,9 @@ jobs:
           echo "Maven project version: $VERSION"
 
       - name: Validate release version
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
         run: |
-          VERSION="${{ steps.version.outputs.version }}"
-
           if [[ "$VERSION" == *"-SNAPSHOT" ]]; then
             echo "ERROR: Cannot create a release from a SNAPSHOT version: $VERSION"
             exit 1
