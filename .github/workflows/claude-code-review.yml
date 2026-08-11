@@ -72,3 +72,21 @@ jobs:
             Do not push changes.
 
             If there are no significant issues, explicitly state that the pull request looks good.
+
+            After completing the review, POST THE REVIEW RESULT AS A COMMENT ON THIS PULL REQUEST.
+
+            Use:
+              gh pr comment ${{ github.event.pull_request.number }}
+
+            The comment should contain:
+            - A concise summary of the review.
+            - Each finding with its severity.
+            - The affected file/line when applicable.
+            - A concrete explanation and recommendation.
+            - A clear statement if no significant issues were found.
+
+            Do not only return the review in your Claude response.
+            You MUST publish the final review as a GitHub pull request comment.
+
+          claude_args: |
+            --allowedTools "Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
