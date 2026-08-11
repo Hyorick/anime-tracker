@@ -46,9 +46,13 @@ public class CatalogQueryController {
   public ResponseEntity<AnimeResponse> getAnimeDetails(@PathVariable Long animeId) {
 
     Optional<Anime> foundAnime = service.getAnimeDetails(animeId);
-    return foundAnime
-        .map(anime -> ResponseEntity.ok(animeResponseMapper.toResponse(anime)))
-        .orElse(ResponseEntity.notFound().build());
+    if (foundAnime.isEmpty()) {
+      return ResponseEntity.notFound().build();
+    }
+
+    service.getAnimeDetails(animeId);
+
+    return ResponseEntity.ok(animeResponseMapper.toResponse(foundAnime.get()));
   }
 
   @GetMapping(path = "/animes")
