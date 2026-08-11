@@ -47,8 +47,8 @@ public class CatalogQueryController {
 
     Optional<Anime> foundAnime = service.getAnimeDetails(animeId);
     return foundAnime
-        .map(anime -> ResponseEntity.ok(animeResponseMapper.toResponse(anime)))
-        .orElse(ResponseEntity.notFound().build());
+            .map(anime -> ResponseEntity.ok(animeResponseMapper.toResponse(anime)))
+            .orElse(ResponseEntity.notFound().build());
   }
 
   @GetMapping(path = "/animes")
