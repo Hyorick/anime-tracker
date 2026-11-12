@@ -1,10 +1,10 @@
 package com.ekko.anime_tracker.catalog.usecase.impl;
 
-import com.ekko.anime_tracker.catalog.adapter.persistence.repository.AnimeRepository;
 import com.ekko.anime_tracker.catalog.adapter.persistence.repository.AnimeSpecification;
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
-import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogQueryService;
+import com.ekko.anime_tracker.catalog.usecase.port.in.AnimeCatalogQueryService;
+import com.ekko.anime_tracker.catalog.usecase.port.out.AnimeRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;

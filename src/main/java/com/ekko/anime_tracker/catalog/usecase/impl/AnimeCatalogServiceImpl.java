@@ -1,6 +1,5 @@
 package com.ekko.anime_tracker.catalog.usecase.impl;
 
-import com.ekko.anime_tracker.catalog.adapter.persistence.repository.AnimeRepository;
 import com.ekko.anime_tracker.catalog.adapter.web.mapper.request.AnimeRequestMapper;
 import com.ekko.anime_tracker.catalog.adapter.web.mapper.request.EpisodeRequestMapper;
 import com.ekko.anime_tracker.catalog.adapter.web.mapper.request.SeasonRequestMapper;
@@ -8,8 +7,9 @@ import com.ekko.anime_tracker.catalog.adapter.web.request.*;
 import com.ekko.anime_tracker.catalog.domain.Anime;
 import com.ekko.anime_tracker.catalog.domain.Episode;
 import com.ekko.anime_tracker.catalog.domain.Season;
-import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogCommandService;
 import com.ekko.anime_tracker.catalog.usecase.exception.ResourceNotFoundException;
+import com.ekko.anime_tracker.catalog.usecase.port.in.AnimeCatalogCommandService;
+import com.ekko.anime_tracker.catalog.usecase.port.out.AnimeRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

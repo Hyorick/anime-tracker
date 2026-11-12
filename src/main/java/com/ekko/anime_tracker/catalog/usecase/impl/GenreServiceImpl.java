@@ -2,7 +2,7 @@ package com.ekko.anime_tracker.catalog.usecase.impl;
 
 import com.ekko.anime_tracker.catalog.adapter.persistence.entity.GenreEntity;
 import com.ekko.anime_tracker.catalog.adapter.persistence.repository.SpringDataGenreRepository;
-import com.ekko.anime_tracker.catalog.usecase.GenreService;
+import com.ekko.anime_tracker.catalog.usecase.port.in.GenreService;
 import java.util.List;
 import org.springframework.stereotype.Service;
 

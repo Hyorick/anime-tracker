@@ -1,4 +1,4 @@
-package com.ekko.anime_tracker.catalog.adapter.persistence.repository;
+package com.ekko.anime_tracker.catalog.usecase.port.out;
 
 import com.ekko.anime_tracker.catalog.adapter.persistence.entity.AnimeEntity;
 import com.ekko.anime_tracker.catalog.domain.Anime;

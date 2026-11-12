@@ -1,4 +1,4 @@
-package com.ekko.anime_tracker.catalog.usecase;
+package com.ekko.anime_tracker.catalog.usecase.port.in;
 
 import com.ekko.anime_tracker.catalog.adapter.web.request.*;
 import com.ekko.anime_tracker.catalog.domain.Anime;

@@ -2,7 +2,7 @@ package com.ekko.anime_tracker.catalog.usecase.impl;
 
 import com.ekko.anime_tracker.catalog.adapter.persistence.entity.StudioEntity;
 import com.ekko.anime_tracker.catalog.adapter.persistence.repository.SpringDataStudioRepository;
-import com.ekko.anime_tracker.catalog.usecase.StudioService;
+import com.ekko.anime_tracker.catalog.usecase.port.in.StudioService;
 import org.springframework.stereotype.Service;
 
 @Service

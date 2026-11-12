@@ -5,7 +5,7 @@ import com.ekko.anime_tracker.catalog.adapter.web.mapper.response.SummaryRespons
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeResponse;
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeSummaryResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
-import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogQueryService;
+import com.ekko.anime_tracker.catalog.usecase.port.in.AnimeCatalogQueryService;
 import java.util.List;
 import java.util.Optional;
 import org.springdoc.core.annotations.ParameterObject;
