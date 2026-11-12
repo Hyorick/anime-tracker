@@ -5,6 +5,7 @@ import com.ekko.anime_tracker.catalog.adapter.persistence.entity.GenreEntity;
 import com.ekko.anime_tracker.catalog.adapter.persistence.entity.StudioEntity;
 import com.ekko.anime_tracker.catalog.adapter.persistence.mapper.AnimeEntityMapper;
 import com.ekko.anime_tracker.catalog.domain.Anime;
+import com.ekko.anime_tracker.catalog.usecase.port.out.AnimeRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;

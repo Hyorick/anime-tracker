@@ -4,7 +4,7 @@ import com.ekko.anime_tracker.catalog.adapter.web.mapper.response.AnimeResponseM
 import com.ekko.anime_tracker.catalog.adapter.web.request.*;
 import com.ekko.anime_tracker.catalog.adapter.web.response.AnimeResponse;
 import com.ekko.anime_tracker.catalog.domain.Anime;
-import com.ekko.anime_tracker.catalog.usecase.AnimeCatalogCommandService;
+import com.ekko.anime_tracker.catalog.usecase.port.in.AnimeCatalogCommandService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
